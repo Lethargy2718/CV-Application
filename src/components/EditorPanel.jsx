@@ -14,8 +14,9 @@ export default function EditorPanel({ headerFields, onHeaderChange }) {
             title: "Header",
             className: "accordion-grid",
             content: headerFields.map((f, idx) => 
-                <TextInput 
+                <TextInput
                     key={idx}
+                    id={idx} 
                     label={f.label}
                     value={f.value}
                     required={f.required}
@@ -29,6 +30,7 @@ export default function EditorPanel({ headerFields, onHeaderChange }) {
             content: headerFields.map((f, idx) => 
                 <TextInput 
                     key={idx}
+                    id={idx} 
                     label={f.label}
                     value={f.value}
                     required={f.required}
