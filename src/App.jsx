@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './App.css'
 
 import EditorPanel from './components/EditorPanel'
 import PreviewPanel from './components/PreviewPanel'
