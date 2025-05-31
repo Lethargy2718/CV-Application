@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <EditorPanel headerFields={headerFields} onHeaderChange={handleHeaderChange}/>
-      <PreviewPanel headerFields={headerFields} onHeaderChange={handleHeaderChange}/>
+      <PreviewPanel headerFields={headerFields}/>
     </>
   )
 }
