@@ -1,8 +1,9 @@
 import { useState } from "react"
 import AccordionItem from "./AccordionItem"
 import TextInput from "./TextInput"
+import ExperienceItems from "./ExperienceItem";
 
-export default function EditorPanel({ headerFields, onHeaderChange }) {
+export default function EditorPanel({ headerData, onHeaderChange }) {
     const [activeIndex, setActiveIndex] = useState(null);
 
     function handleToggle(idx) {
@@ -13,7 +14,7 @@ export default function EditorPanel({ headerFields, onHeaderChange }) {
         {
             title: "Header",
             className: "accordion-grid",
-            content: headerFields.map((f, idx) => 
+            content: headerData.map((f, idx) => 
                 <TextInput
                     key={idx}
                     id={idx} 
@@ -25,18 +26,9 @@ export default function EditorPanel({ headerFields, onHeaderChange }) {
             )
         },
         {
-            title: "Header",
-            className: "accordion-grid",
-            content: headerFields.map((f, idx) => 
-                <TextInput 
-                    key={idx}
-                    id={idx} 
-                    label={f.label}
-                    value={f.value}
-                    required={f.required}
-                    onType={(e) => onHeaderChange(e, idx)}
-                />
-            )
+            title: "Experience",
+            className: "",
+            content: <ExperienceItems />
         },
     ]
 

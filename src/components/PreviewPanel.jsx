@@ -1,10 +1,10 @@
 import CV from "./CV";
 
-export default function PreviewPanel({ headerFields }) {
+export default function PreviewPanel({ headerData }) {
     return (
         <>
             <section className="panel preview-panel">
-                <CV headerFields={headerFields}/>
+                <CV headerData={headerData}/>
             </section>
         </>
     )

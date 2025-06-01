@@ -62,10 +62,8 @@ h6 {
     isolation: isolate;
 }
 
-ul,
-li {
-    list-style-type: none;
-    list-style: none;
+ul, ol {
+    list-style-position: inside;
 }
 
 a {
@@ -87,26 +85,36 @@ option,
     cursor: pointer;
 }
 
+label {
+    display: block;
+}
+
 /******************/
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: rgba(0,0,0,0.3);
+  background: #1b1b1b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,0.5);
-  border-radius: 4px;
+  background: #3b82f6;
+  border-radius: 9999px;
+  transition: background-color 500ms;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0,0,0,0.5);
+  background: #2563eb;
 }
 
+
 /******************/
+
+.row {
+    display: flex;
+}
 
 #root {
     display: flex;
@@ -117,80 +125,50 @@ option,
     padding: 2rem 0;
 }
 
-.editor-panel {
-    height: 100svh;
-    overflow-y: auto;
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: clamp(300px, 40%, 600px);
-    background-color: gray;
-    font-size: 1.2rem;
-}
-
 .preview-panel {
     min-height: 100svh;
     flex: 1;
-    background-color: lightgray;
+    background: linear-gradient(145deg, #060606, #1b1b1b);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Accordion */
-
-.accordion-content {
-  	display: grid;
-	grid-template-rows: 0fr;
-	transition: grid-template-rows 500ms, margin-top 500ms;
-    margin-top: 0;
-}
-
-.accordion-content[aria-hidden="false"] {
-  	grid-template-rows: 1fr;
-    margin-top: 1.2em;
-}
-
-.accordion-content > div {
-  	overflow: hidden;
-}
-
-.accordion {
-  	color: #effeef;
-  	margin: 0 1em;
-}
-
-.accordion input {
-    color: black;
-    width: 100%;
-    padding: 0.5em 0.25em;
-}
-
-.accordion h2, .accordion button {
-	width: 100%;
-}
-
-.accordion-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1em;
-}
-
-.accordion-item {
-    background-color: black;
-    padding: 1em 1.5em;
-}
-
-.accordion-item + .accordion-item {
-    margin-top: 1em;
-}
-
 /* CV */
 
-.CV {
+.cv {
     background-color: white;
     color: black;
     width: 8.5in;
     height: 11in;
     padding: 0.5in;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 11pt;
+    line-height: 1.4;
+}
+
+.cv h1 {
+    font-size: 21pt;
+}
+
+.cv h2, .cv h3 {
+    font-size: 13pt;
+}
+
+.cv__section + .cv__section {
+    margin-top: 1em;
+}
+
+.cv hr {
+    height: 1px;
+    background-color: black;
+    border: none;
+    margin-bottom: 0.8em;
+}
+
+.inner-list {
+    padding-left: 40px;
+    & > li {
+        padding-left: 30px;
+    }
 }

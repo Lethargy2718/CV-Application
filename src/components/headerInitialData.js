@@ -1,4 +1,4 @@
-export const headerInitialFields = [
+export const headerInitialData = [
     {
         label: "First Name",
         value: "John",
