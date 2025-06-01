@@ -1,9 +1,9 @@
 import { useState } from "react"
 import AccordionItem from "./AccordionItem"
 import TextInput from "./TextInput"
-import ExperienceItems from "./ExperienceItem";
+import ExperienceItems from "./ExperienceItems";
 
-export default function EditorPanel({ headerData, onHeaderChange }) {
+export default function EditorPanel({ headerData, onHeaderChange, experienceData, onExperienceDelete, onExperienceChange, onExperienceAdd }) {
     const [activeIndex, setActiveIndex] = useState(null);
 
     function handleToggle(idx) {
@@ -28,7 +28,13 @@ export default function EditorPanel({ headerData, onHeaderChange }) {
         {
             title: "Experience",
             className: "",
-            content: <ExperienceItems />
+            content: 
+                <ExperienceItems
+                    experienceData={experienceData}
+                    onExperienceDelete={onExperienceDelete}
+                    onExperienceChange={onExperienceChange}
+                    onExperienceAdd={onExperienceAdd}
+                />
         },
     ]
 

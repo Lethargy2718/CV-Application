@@ -6,7 +6,7 @@ export default function AccordionItem({ title, children, isActive = false, onTog
     const contentID = `accordion-content-${id}`;
     return (        
         <div className="accordion-item">
-            <h2 id={titleID}>
+                <h2 id={titleID}>
                 <button className="accordion-trigger" aria-expanded={isActive} aria-controls={contentID} onClick={onToggle}>
                 {title}
                 </button>
@@ -15,7 +15,7 @@ export default function AccordionItem({ title, children, isActive = false, onTog
                 <div className={`${className}`}>
                     {children}
                 </div>
-            </div>
+            </div>            
         </div>
     )
 }

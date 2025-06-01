@@ -79,6 +79,7 @@ button,
 label[for]:not(:has(+ :is(input, select, textarea):disabled)),
 select,
 option,
+input[type="checkbox"],
 ::-webkit-search-cancel-button,
 ::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-track {
@@ -92,7 +93,8 @@ label {
 /******************/
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -108,7 +110,6 @@ label {
 ::-webkit-scrollbar-thumb:hover {
   background: #2563eb;
 }
-
 
 /******************/
 
@@ -132,6 +133,9 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 2rem;
+    overflow-x: auto;
+
 }
 
 /* CV */
@@ -170,5 +174,38 @@ label {
     padding-left: 40px;
     & > li {
         padding-left: 30px;
+    }
+}
+
+@media (width <= 1300px) {
+    .cv {
+        zoom: 70%;
+    }
+}
+
+
+@media (width <= 1000px) {
+    #root {
+        flex-direction: column;
+    }
+
+    .panel {
+        min-height: auto !important;
+        height: auto !important;
+        width: 100% !important;
+    }
+
+    .editor-panel {
+        position: static !important;
+        overflow-y: visible !important;
+    }
+
+    .preview-panel {
+        padding: 2rem 0;
+        display: block;
+    }
+
+    .cv {
+        margin: 0 auto;
     }
 }
