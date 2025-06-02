@@ -7,7 +7,7 @@ export default function NestedItems({ itemsData, onItemDelete, onItemChange, onI
                 className="btn btn-add"
                 onClick={() => onItemAdd(0, "item")}
             >
-                + Add Item
+                + Add {itemName}
             </button>
             {rootChildren?.map((itemIdx, itemArrIdx) => (
                 <ItemForm
