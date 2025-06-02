@@ -5,51 +5,63 @@ import PreviewPanel from './components/PreviewPanel'
 
 import { headerInitialData } from './components/headerInitialData'
 import { experienceInitialData } from './components/experienceInitialData';
+import { projectInitialData } from './components/projectInitialData';
 
 function App() {
 	const [headerData, setHeaderData] = useState(headerInitialData);
 	const [experienceData, setExperienceData] = useState(experienceInitialData);
+	const [projectData, setProjectData] = useState(projectInitialData);
+
+	const typeToState = {
+		"experience": { state: experienceData, setState: setExperienceData },
+		"project": { state: projectData, setState: setProjectData },
+	}
 
 	const onHeaderChange = (e, idx1) => {
 		setHeaderData(headerData.map((f, idx2) => 
-		idx1 === idx2 ? { ...f, value: e.target.value } : f
+			idx1 === idx2 ? { ...f, value: e.target.value } : f
 		));
 	}
 
-	const onExperienceDelete = (toDeleteId) => {
-		const parentId = getParentId(toDeleteId, experienceData);
+	const onItemDelete = (itemType, toDeleteId) => {
+		const {state, setState} = typeToState[itemType];
+
+		const parentId = getParentId(toDeleteId, state);
 		if (!parentId) throw new Error("Unable to find the parent of the element with ID " + toDeleteId);
 
-		setExperienceData({
-			...experienceData,
+		setState({
+			...state,
 			[parentId]: {
-				...experienceData[parentId],
-				childIds: experienceData[parentId].childIds.filter(id => id != toDeleteId)
+				...state[parentId],
+				childIds: state[parentId].childIds.filter(id => id != toDeleteId)
 			}
 		});
 
-		experienceRecursiveDelete(experienceData, toDeleteId);
+		itemRecursiveDelete(state, toDeleteId);
 	}
 
-	const onExperienceChange = (e, id, field) => {
+	const onItemChange = (itemType, e, id, field) => {
+		const {state, setState} = typeToState[itemType];
 		const newVal = e.target.type === "checkbox" ? e.target.checked : e.target.value;
-		setExperienceData({
-			...experienceData,
+
+		setState({
+			...state,
 			[id]: {
-				...experienceData[id],
+				...state[id],
 				[field]: newVal,
 			},
 		});
-
 	}
 
-	const onExperienceAdd = (parentId, type) => {
+	const onItemAdd = (itemType, parentId, itemLevel) => {
+		const {state, setState} = typeToState[itemType];
 		const id = crypto.randomUUID();
-		const newObj = typeToFactory[type](id);
-		setExperienceData({
-			...experienceData,
+		const newObj = levelToFactory[itemLevel](id);
+
+		setState({
+			...state,
 			[id]: newObj,
-			[parentId]: {...experienceData[parentId], childIds: [...experienceData[parentId].childIds, id]},
+			[parentId]: {...state[parentId], childIds: [...state[parentId].childIds, id]},
 		});
 	}
 
@@ -59,21 +71,22 @@ function App() {
 			headerData={headerData}
 			onHeaderChange={onHeaderChange}
 			experienceData={experienceData}
-			onExperienceDelete={onExperienceDelete}
-			onExperienceChange={onExperienceChange}
-			onExperienceAdd={onExperienceAdd}
+			projectData={projectData}
+			onItemDelete={onItemDelete}
+			onItemChange={onItemChange}
+			onItemAdd={onItemAdd}
 		/>
-		<PreviewPanel headerData={headerData} experienceData={experienceData}/>
+		<PreviewPanel headerData={headerData} experienceData={experienceData} projectData={projectData}/>
 		</>
 	)
 }
 
 export default App
 
-const typeToFactory = {
-	"experience": experienceFactory,
-	"achievement": achievementAndDescFactory,
-	"description": achievementAndDescFactory,
+const levelToFactory = {
+	"item": itemFactory,
+	"subitem": subitemFactory,
+	"subsubitem": subitemFactory,
 }
 
 function getParentId(toDeleteId, experienceData) {
@@ -84,17 +97,17 @@ function getParentId(toDeleteId, experienceData) {
 	}
 }
 
-function experienceRecursiveDelete(experienceData, id) {
-	if (!experienceData[id]) return;
+function itemRecursiveDelete(itemData, id) {
+	if (!itemData[id]) return;
 
-	experienceData[id].childIds.forEach(childId => {
-		experienceRecursiveDelete(childId);
+	itemData[id].childIds.forEach(childId => {
+		itemRecursiveDelete(childId);
 	});
 		
-	delete experienceData[id];
+	delete itemData[id];
 }
 
-function experienceFactory(objId) {
+function itemFactory(objId) {
 	return {
 		id: objId,
         title: "",
@@ -107,7 +120,7 @@ function experienceFactory(objId) {
     }
 }
 
-function achievementAndDescFactory(objId) {
+function subitemFactory(objId) {
 	return {
         id: objId,
         content: "",

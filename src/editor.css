@@ -82,7 +82,7 @@
 
 /*  */
 
-.experience-container {
+.nested-container {
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -91,7 +91,7 @@
     border-radius: 0.5rem;
 }
 
-.exp__header {
+.block__header {
     gap: 1em;
     justify-content: space-between;
     align-items: center;
@@ -99,22 +99,22 @@
     flex-wrap: wrap;
 }
 
-.exp__header h2 {
+.block__header h2 {
     font-size: 1rem;
 }
 
 
-.exp__header h3 {
+.block__header h3 {
     font-size: 0.9rem;
 }
 
-.exp__header h4 {
+.block__header h4 {
     font-size: 0.8rem;
 }
 
-.exp__header h2,
-.exp__header h3,
-.exp__header h4 {
+.block__header h2,
+.block__header h3,
+.block__header h4 {
     font-weight: 600;
 }
 
@@ -216,28 +216,28 @@ input[type="month"]::-webkit-calendar-picker-indicator:hover {
     background-color: #059669;
 }
 
-.experience-container > .btn {
-    width: 100%;
+.nested-container > .btn {
+    width: auto;
 }
 
-.experience {
+.item {
     padding: 1.2em;
 }
 
-.achievements-header {
+.sub-items-header {
     margin-bottom: 1em;
 }
 
-.experience,
-.achievements,
-.achievement-descriptions {
+.item,
+.sub-items,
+.sub-sub-items {
     border: 1px solid #3f3f46;
     padding: 1.2em;
     border-radius: 16px;
 }
 
-.achievement,
-.achievement-description {
+.sub-item,
+.sub-sub-item {
     margin-top: 1rem;
 }
 
@@ -252,9 +252,9 @@ input[type="month"]::-webkit-calendar-picker-indicator:hover {
 }
 
 @media (width <= 576px) {
-    .experience,
-    .achievements,
-    .achievement-descriptions,
+    .item,
+    .sub-items,
+    .sub-sub-items,
     .accordion-item {
         padding: 0.7em 0.75em;
     }

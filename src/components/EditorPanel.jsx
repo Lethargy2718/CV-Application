@@ -1,9 +1,9 @@
 import { useState } from "react"
 import AccordionItem from "./AccordionItem"
 import TextInput from "./TextInput"
-import ExperienceItems from "./ExperienceItems";
+import NestedItems from "./NestedItems";
 
-export default function EditorPanel({ headerData, onHeaderChange, experienceData, onExperienceDelete, onExperienceChange, onExperienceAdd }) {
+export default function EditorPanel({ headerData, onHeaderChange, experienceData, projectData, onItemDelete, onItemChange, onItemAdd }) {
     const [activeIndex, setActiveIndex] = useState(null);
 
     function handleToggle(idx) {
@@ -29,11 +29,26 @@ export default function EditorPanel({ headerData, onHeaderChange, experienceData
             title: "Experience",
             className: "",
             content: 
-                <ExperienceItems
-                    experienceData={experienceData}
-                    onExperienceDelete={onExperienceDelete}
-                    onExperienceChange={onExperienceChange}
-                    onExperienceAdd={onExperienceAdd}
+                <NestedItems
+                    itemsData={experienceData}
+                    onItemDelete={(toDeleteId) => onItemDelete("experience", toDeleteId)}
+                    onItemChange={(e, id, field) => onItemChange("experience", e, id, field)}
+                    onItemAdd={(parentId, itemLevel) => onItemAdd("experience", parentId, itemLevel)}
+                    itemName={"Experience"}
+                    subItemName={"Detail"}
+                />
+        },
+        {
+            title: "Projects",
+            className: "",
+            content: 
+                <NestedItems
+                    itemsData={projectData}
+                    onItemDelete={(toDeleteId) => onItemDelete("project", toDeleteId)}
+                    onItemChange={(e, id, field) => onItemChange("project", e, id, field)}
+                    onItemAdd={(parentId, itemLevel) => onItemAdd("project", parentId, itemLevel)}
+                    itemName={"Project"}
+                    subItemName={"Detail"}
                 />
         },
     ]

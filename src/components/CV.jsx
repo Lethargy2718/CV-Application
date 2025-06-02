@@ -1,4 +1,4 @@
-export default function CV({ headerData }) {
+export default function CV({ headerData, experienceData, projectData }) {
     const firstName = headerData[0].value;
     const lastName = headerData[1].value;
     const email = headerData[2].value;
