@@ -9,7 +9,7 @@ export const experienceInitialData = {
         title: "Resume Worded & Co.",
         startDate: "2017-10",
         endDate: "",
-        present: false,
+        present: true,
         role: "Financial Data Analyst, Business Development & Operations",
         location: "San Francisco, CA",
         childIds: [100, 101, 102],
@@ -26,7 +26,7 @@ export const experienceInitialData = {
     },
     3: {
         id: 3,
-        title: "Resume Worded & Co.",
+        title: "Some place",
         startDate: "2011-06",
         endDate: "2013-05",
         present: false,
@@ -72,7 +72,7 @@ export const experienceInitialData = {
     },
     107: {
         id: 107,
-        content: "",
+        content: "Drove redevelopment of internal Drove redevelopment of internal Drove redevelopment of internal Drove redevelopment of internal",
         childIds: []
     },
 

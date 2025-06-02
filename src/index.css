@@ -147,8 +147,9 @@ label {
     height: 11in;
     padding: 0.5in;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 11pt;
+    font-size: 10pt;
     line-height: 1.4;
+    overflow: hidden;
 }
 
 .cv h1 {
@@ -170,13 +171,21 @@ label {
     margin-bottom: 0.8em;
 }
 
-.inner-list {
+.cv__inner-header, .cv__inner-desc {
+    justify-content: space-between;
+}
+
+.cv__inner-list {
     padding-left: 40px;
+
     & > li {
         padding-left: 30px;
     }
 }
 
+.cv__inner-section + .cv__inner-section {
+    margin-top: 1.2em;
+}
 
 @media (width <= 1300px) {
     .cv {

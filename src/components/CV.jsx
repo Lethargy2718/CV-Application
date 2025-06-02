@@ -15,24 +15,58 @@ export default function CV({ headerData, experienceData, projectData }) {
             <section className="cv__experience cv__section">
                 <h2>EXPERIENCE</h2>
                 <hr />
+                <Items data={experienceData}/>
             </section>
-            <ul className="outer-list">
-                <li>
-                    Outer item
-                    <ul className="inner-list">
-                        <li>hi</li>
-                        <li>dude</li>
-                    </ul>
-                </li>
-                <li>
-                    Outer item 2
-                    <ul className="inner-list">
-                        <li>asdas</li>
-                        <li>asdas</li>
-                    </ul>
-                </li>
-            </ul>
+            <section className="projects cv__section">
+                <h2>PROJECTS</h2>
+                <hr />
+                <Items data={projectData}/>
+            </section>
+            <section className="cv__skills cv__section">
+                <h2>SKILLS</h2>
+                <hr />
+                {/* <Skills /> */}
+            </section>
+
 
         </div>
     )
+}
+
+function Items({ data }) {
+    return data[0].childIds.map(itemId => {
+        const item = data[itemId];
+        return (
+            <div className="cv__inner-section" key={itemId}>
+                <div className="cv__inner-header row">
+                    <p className="cv__inner-title"><strong>{item.title}</strong></p>
+                    <p className="cv__inner-date"><strong>{item.startDate + (((item.present && item.startDate) || item.endDate) && " – " + (item.present ? "Present" : item.endDate))}</strong></p>
+                </div>
+                <div className="cv__inner-desc row">
+                    <p className="cv__inner-title">{item.role}</p>
+                    <p className="cv__inner-date">{item.location}</p>
+                </div>
+                <ul className="cv__outer-list">
+                    {item.childIds.map(subItemId => {
+                        const subItem = data[subItemId];
+                        return (
+                            <li key={subItemId}>
+                                {subItem.content}
+                                <ul className="cv__inner-list">
+                                    {subItem.childIds.map(descId => {
+                                        const desc = data[descId];
+                                        return (
+                                            <li key={descId}>
+                                                {desc.content}
+                                            </li>
+                                        )
+                                    
+                                    })}
+                                </ul>
+                            </li>
+                        )
+                    })}
+                </ul>
+            </div>
+        )});
 }

@@ -51,6 +51,11 @@ export default function EditorPanel({ headerData, onHeaderChange, experienceData
                     subItemName={"Detail"}
                 />
         },
+        {
+            title: "Skills",
+            className: "",
+            content: <></>
+        },
     ]
 
     return (
