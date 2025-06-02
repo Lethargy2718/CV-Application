@@ -2,8 +2,9 @@ import { useState } from "react"
 import AccordionItem from "./AccordionItem"
 import TextInput from "./TextInput"
 import NestedItems from "./NestedItems";
+import SkillItems from "./SkillItem";
 
-export default function EditorPanel({ headerData, onHeaderChange, experienceData, projectData, onItemDelete, onItemChange, onItemAdd }) {
+export default function EditorPanel({ headerData, onHeaderChange, experienceData, projectData, skillData, onItemDelete, onItemChange, onItemAdd }) {
     const [activeIndex, setActiveIndex] = useState(null);
 
     function handleToggle(idx) {
@@ -54,7 +55,13 @@ export default function EditorPanel({ headerData, onHeaderChange, experienceData
         {
             title: "Skills",
             className: "",
-            content: <></>
+            content: 
+                <SkillItems 
+                    skillData={skillData}
+                    onItemDelete={(toDeleteId) => onItemDelete("skill", toDeleteId)}
+                    onItemChange={(e, id, field) => onItemChange("skill", e, id, field)}
+                    onItemAdd={(parentId, itemLevel) => onItemAdd("skill", parentId, itemLevel)}
+                />
         },
     ]
 

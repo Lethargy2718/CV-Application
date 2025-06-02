@@ -1,4 +1,4 @@
-export default function CV({ headerData, experienceData, projectData }) {
+export default function CV({ headerData, experienceData, projectData, skillData }) {
     const firstName = headerData[0].value;
     const lastName = headerData[1].value;
     const email = headerData[2].value;
@@ -10,14 +10,13 @@ export default function CV({ headerData, experienceData, projectData }) {
             <section className="cv__header cv__section">
                 <h1>{firstName} {lastName}</h1>
                 <p>{email} | {number} | {location} </p>
-            </section>
-            
+            </section>            
             <section className="cv__experience cv__section">
                 <h2>EXPERIENCE</h2>
                 <hr />
                 <Items data={experienceData}/>
             </section>
-            <section className="projects cv__section">
+            <section className="cv__projects cv__section">
                 <h2>PROJECTS</h2>
                 <hr />
                 <Items data={projectData}/>
@@ -25,7 +24,7 @@ export default function CV({ headerData, experienceData, projectData }) {
             <section className="cv__skills cv__section">
                 <h2>SKILLS</h2>
                 <hr />
-                {/* <Skills /> */}
+                <Skills data={skillData}/>
             </section>
 
 
@@ -34,7 +33,7 @@ export default function CV({ headerData, experienceData, projectData }) {
 }
 
 function Items({ data }) {
-    return data[0].childIds.map(itemId => {
+    return data[0].childIds?.map(itemId => {
         const item = data[itemId];
         return (
             <div className="cv__inner-section" key={itemId}>
@@ -69,4 +68,25 @@ function Items({ data }) {
                 </ul>
             </div>
         )});
+}
+
+function Skills({ data }) {
+    const rootChildren = data[0]?.childIds || [];
+
+    return (
+        <ul className="cv__outer-list">
+            {rootChildren.map((categoryId) => {
+                const category = data[categoryId];
+                const items = category.childIds.map(id => data[id].content).filter(Boolean);
+
+                if (!category.category?.trim() && items.length === 0) return null;
+
+                return (
+                    <li key={categoryId}>
+                        <strong>{category.category}</strong>: {items.join(', ')}
+                    </li>
+                );
+            })}
+        </ul>
+    );
 }

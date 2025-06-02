@@ -1,51 +1,73 @@
 export const projectInitialData = {
-    0: {
-        id: 0,
-        title: '(Root)',
-        childIds: [1, 2]
-    },
+  0: {
+    id: 0,
+    title: "(Root)",
+    childIds: [1, 2, 3],
+  },
 
-    1: {
-        id: 1,
-        title: "Resume Builder App",
-        startDate: "2024-02",
-        endDate: "2024-04",
-        present: false,
-        role: "Full Stack Developer",
-        location: "Remote",
-        childIds: [100, 101]
-    },
+  1: {
+    id: 1,
+    title: "Internal Design System Revamp",
+    startDate: "2023-01",
+    endDate: "2023-06",
+    present: false,
+    role: "UI/UX Engineer",
+    location: "Remote",
+    childIds: [100, 101],
+  },
 
-    2: {
-        id: 2,
-        title: "Job Application Tracker",
-        startDate: "2023-09",
-        endDate: "2023-12",
-        present: false,
-        role: "Frontend Developer",
-        location: "Remote",
-        childIds: [102, 103]
-    },
+  2: {
+    id: 2,
+    title: "Automated Data Quality Pipeline",
+    startDate: "2022-07",
+    endDate: "2022-12",
+    present: false,
+    role: "Data Engineer",
+    location: "New York, NY",
+    childIds: [102, 103],
+  },
 
-    100: {
-        id: 100,
-        content: "Designed and implemented a minimalist resume builder with dark mode, real-time editing, and export-to-PDF functionality.",
-        childIds: []
-    },
-    101: {
-        id: 101,
-        content: "Created accordion-based UI using React and TailwindCSS, inspired by Refactoring UI principles.",
-        childIds: []
-    },
+  3: {
+    id: 3,
+    title: "AI-Powered Resume Matcher",
+    startDate: "2024-02",
+    endDate: "2024-04",
+    present: false,
+    role: "Machine Learning Engineer",
+    location: "San Francisco, CA",
+    childIds: [104, 105],
+  },
 
-    102: {
-        id: 102,
-        content: "Developed a dashboard to track job applications, status, interview stages, and feedback.",
-        childIds: []
-    },
-    103: {
-        id: 103,
-        content: "Implemented filter/sort controls, authentication, and local storage persistence for state management.",
-        childIds: []
-    }
+  100: {
+    id: 100,
+    content: "Led the migration from legacy design tokens to a scalable Figma-based system integrated with Tailwind.",
+    childIds: [],
+  },
+  101: {
+    id: 101,
+    content: "Developed custom component libraries with full accessibility and theming support for light/dark modes.",
+    childIds: [],
+  },
+
+  102: {
+    id: 102,
+    content: "Built a Spark-based pipeline for anomaly detection across distributed telemetry data from 12+ sources.",
+    childIds: [],
+  },
+  103: {
+    id: 103,
+    content: "Implemented data validation rules using Great Expectations with real-time Slack/Email alerting.",
+    childIds: [],
+  },
+
+  104: {
+    id: 104,
+    content: "Trained and deployed a BERT-based model to extract job-relevant phrases from applicant resumes.",
+    childIds: [],
+  },
+  105: {
+    id: 105,
+    content: "Integrated with third-party ATS platforms and reduced recruiter screening time by 40%.",
+    childIds: [],
+  },
 };

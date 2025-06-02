@@ -6,16 +6,19 @@ import PreviewPanel from './components/PreviewPanel'
 import { headerInitialData } from './components/headerInitialData'
 import { experienceInitialData } from './components/experienceInitialData';
 import { projectInitialData } from './components/projectInitialData';
+import { skillInitialData } from './components/skillinitialData';
 
 function App() {
 	const [headerData, setHeaderData] = useState(headerInitialData);
 	const [experienceData, setExperienceData] = useState(experienceInitialData);
 	const [projectData, setProjectData] = useState(projectInitialData);
+	const [skillData, setSkillData] = useState(skillInitialData);
 
 	const typeToState = {
 		"experience": { state: experienceData, setState: setExperienceData },
 		"project": { state: projectData, setState: setProjectData },
-	}
+		"skill": { state: skillData, setState: setSkillData },
+	};
 
 	const onHeaderChange = (e, idx1) => {
 		setHeaderData(headerData.map((f, idx2) => 
@@ -72,11 +75,12 @@ function App() {
 			onHeaderChange={onHeaderChange}
 			experienceData={experienceData}
 			projectData={projectData}
+			skillData={skillData}
 			onItemDelete={onItemDelete}
 			onItemChange={onItemChange}
 			onItemAdd={onItemAdd}
 		/>
-		<PreviewPanel headerData={headerData} experienceData={experienceData} projectData={projectData}/>
+		<PreviewPanel headerData={headerData} experienceData={experienceData} projectData={projectData} skillData={skillData}/>
 		</>
 	)
 }
@@ -87,6 +91,8 @@ const levelToFactory = {
 	"item": itemFactory,
 	"subitem": subitemFactory,
 	"subsubitem": subitemFactory,
+	"skill": skillFactory,
+	"skillItem": skillItemFactory,
 }
 
 function getParentId(toDeleteId, experienceData) {
@@ -101,7 +107,7 @@ function itemRecursiveDelete(itemData, id) {
 	if (!itemData[id]) return;
 
 	itemData[id].childIds.forEach(childId => {
-		itemRecursiveDelete(childId);
+		itemRecursiveDelete(itemData, childId);
 	});
 		
 	delete itemData[id];
@@ -128,4 +134,14 @@ function subitemFactory(objId) {
     }
 }
 
+function skillFactory(objId) {
+	return {
+		id: objId,
+		category: "",
+		childIds: [],
+	}
+}
 
+function skillItemFactory(objId) {
+	return subitemFactory(objId);
+}
