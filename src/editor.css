@@ -262,4 +262,8 @@ input[type="month"]::-webkit-calendar-picker-indicator:hover {
     .editor-panel {
         min-width: auto;
     }
+
+    .cv {
+        zoom: 55%;
+    }
 }
