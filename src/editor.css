@@ -272,4 +272,8 @@ input[type="month"]::-webkit-calendar-picker-indicator:hover {
         display: flex;
         align-items: center;
     }
+
+    input[type="month"]::-webkit-calendar-picker-indicator {
+        display: none;
+    }
 }
